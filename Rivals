@@ -1,0 +1,135 @@
+local skibidiskibidiskibidiFANUMskibidiTaxABC = game:GetService("Players")
+local skibidiskibidiskibidiFANUMskibidiTaxDEF = game:GetService("UserInputService")
+local skibidiskibidiskibidiFANUMskibidiTaxGHI = workspace.CurrentCamera
+
+local skibidiskibidiskibidiFANUMskibidiTaxJKL = "Head" 
+local skibidiskibidiskibidiFANUMskibidiTaxMNO = nil 
+local skibidiskibidiskibidiFANUMskibidiTaxPQR = false
+
+local skibidiskibidiskibidiFANUMskibidiTaxFovCircle = Drawing.new("Circle")
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Position = Vector2.new(skibidiskibidiskibidiFANUMskibidiTaxGHI.ViewportSize.X / 2, skibidiskibidiskibidiFANUMskibidiTaxGHI.ViewportSize.Y / 2)
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Radius = 150
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Color = Color3.new(255, 255, 255)
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Visible = true
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.NumSides = 32
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Filled = false
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Transparency = 1
+skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Thickness = 1
+
+local function skibidiskibidiskibidiFANUMskibidiTaxIsVisible(skibidiskibidiskibidiFANUMskibidiTaxTargetPart)
+    local camera = skibidiskibidiskibidiFANUMskibidiTaxGHI  
+    if not camera then return false end  
+    local skibidiskibidiskibidiFANUMskibidiTaxCameraPosition = camera.CFrame.Position
+    local skibidiskibidiskibidiFANUMskibidiTaxCameraLookVector = camera.CFrame.LookVector
+    local skibidiskibidiskibidiFANUMskibidiTaxTargetPosition = skibidiskibidiskibidiFANUMskibidiTaxTargetPart.Position
+    local skibidiskibidiskibidiFANUMskibidiTaxDirectionToTarget = (skibidiskibidiskibidiFANUMskibidiTaxTargetPosition - skibidiskibidiskibidiFANUMskibidiTaxCameraPosition).unit
+
+    local skibidiskibidiskibidiFANUMskibidiTaxDotProduct = skibidiskibidiskibidiFANUMskibidiTaxCameraLookVector:Dot(skibidiskibidiskibidiFANUMskibidiTaxDirectionToTarget)
+    if skibidiskibidiskibidiFANUMskibidiTaxDotProduct <= 0 then
+        return false
+    end
+
+    local ray = Ray.new(skibidiskibidiskibidiFANUMskibidiTaxCameraPosition, skibidiskibidiskibidiFANUMskibidiTaxDirectionToTarget * 5000)
+    local skibidiskibidiskibidiFANUMskibidiTaxHitPart, skibidiskibidiskibidiFANUMskibidiTaxHitPosition = workspace:FindPartOnRayWithIgnoreList(ray, {skibidiskibidiskibidiFANUMskibidiTaxABC.LocalPlayer.Character})
+
+    return skibidiskibidiskibidiFANUMskibidiTaxHitPart and skibidiskibidiskibidiFANUMskibidiTaxHitPart:IsDescendantOf(skibidiskibidiskibidiFANUMskibidiTaxTargetPart.Parent)
+end
+
+local function skibidiskibidiskibidiFANUMskibidiTaxSTU()
+    local skibidiskibidiskibidiFANUMskibidiTaxVWX = skibidiskibidiskibidiFANUMskibidiTaxDEF:GetMouseLocation()
+    local skibidiskibidiskibidiFANUMskibidiTaxYZA = nil
+    local skibidiskibidiskibidiFANUMskibidiTaxBCD = skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Radius  
+
+    for _, skibidiskibidiskibidiFANUMskibidiTaxEFG in ipairs(skibidiskibidiskibidiFANUMskibidiTaxABC:GetPlayers()) do
+        if skibidiskibidiskibidiFANUMskibidiTaxEFG ~= skibidiskibidiskibidiFANUMskibidiTaxABC.LocalPlayer and skibidiskibidiskibidiFANUMskibidiTaxEFG.Character then
+            local skibidiskibidiskibidiFANUMskibidiTaxHIJ = skibidiskibidiskibidiFANUMskibidiTaxEFG.Character:FindFirstChild(skibidiskibidiskibidiFANUMskibidiTaxJKL)
+            local skibidiskibidiskibidiFANUMskibidiTaxHumanoid = skibidiskibidiskibidiFANUMskibidiTaxEFG.Character:FindFirstChild("Humanoid")
+            if skibidiskibidiskibidiFANUMskibidiTaxHIJ and skibidiskibidiskibidiFANUMskibidiTaxHumanoid and skibidiskibidiskibidiFANUMskibidiTaxHumanoid.Health > 0 then
+                if not skibidiskibidiskibidiFANUMskibidiTaxIsVisible(skibidiskibidiskibidiFANUMskibidiTaxHIJ) then
+                    continue
+                end
+
+                local skibidiskibidiskibidiFANUMskibidiTaxKLM, skibidiskibidiskibidiFANUMskibidiTaxNOP = skibidiskibidiskibidiFANUMskibidiTaxGHI:WorldToScreenPoint(skibidiskibidiskibidiFANUMskibidiTaxHIJ.Position)
+                if skibidiskibidiskibidiFANUMskibidiTaxNOP then
+                    local skibidiskibidiskibidiFANUMskibidiTaxQRS = (Vector2.new(skibidiskibidiskibidiFANUMskibidiTaxKLM.X, skibidiskibidiskibidiFANUMskibidiTaxKLM.Y) - skibidiskibidiskibidiFANUMskibidiTaxVWX).Magnitude
+
+                    if skibidiskibidiskibidiFANUMskibidiTaxQRS <= skibidiskibidiskibidiFANUMskibidiTaxFovCircle.Radius and skibidiskibidiskibidiFANUMskibidiTaxQRS < skibidiskibidiskibidiFANUMskibidiTaxBCD then
+                        skibidiskibidiskibidiFANUMskibidiTaxBCD = skibidiskibidiskibidiFANUMskibidiTaxQRS
+                        skibidiskibidiskibidiFANUMskibidiTaxYZA = skibidiskibidiskibidiFANUMskibidiTaxEFG
+                    end
+                end
+            end
+        end
+    end
+    return skibidiskibidiskibidiFANUMskibidiTaxYZA
+end
+
+local function skibidiskibidiskibidiFANUMskibidiTaxTUV(skibidiskibidiskibidiFANUMskibidiTaxWXY)
+    if skibidiskibidiskibidiFANUMskibidiTaxWXY and skibidiskibidiskibidiFANUMskibidiTaxWXY.Character and skibidiskibidiskibidiFANUMskibidiTaxWXY.Character:FindFirstChild(skibidiskibidiskibidiFANUMskibidiTaxJKL) then
+        if skibidiskibidiskibidiFANUMskibidiTaxGHI then 
+            skibidiskibidiskibidiFANUMskibidiTaxGHI.CFrame = CFrame.new(skibidiskibidiskibidiFANUMskibidiTaxGHI.CFrame.Position, skibidiskibidiskibidiFANUMskibidiTaxWXY.Character[skibidiskibidiskibidiFANUMskibidiTaxJKL].Position)
+            skibidiskibidiskibidiFANUMskibidiTaxMNO = skibidiskibidiskibidiFANUMskibidiTaxWXY
+        end
+    end
+end
+
+local function skibidiskibidiskibidiFANUMskibidiTaxCreateHighlight(skibidiskibidiskibidiFANUMskibidiTaxPlayer)
+    if skibidiskibidiskibidiFANUMskibidiTaxPlayer and skibidiskibidiskibidiFANUMskibidiTaxPlayer.Character then
+        local skibidiskibidiskibidiFANUMskibidiTaxCharacter = skibidiskibidiskibidiFANUMskibidiTaxPlayer.Character
+        if not skibidiskibidiskibidiFANUMskibidiTaxCharacter:FindFirstChild("Highlight") then
+            local skibidiskibidiskibidiFANUMskibidiTaxHighlight = Instance.new("Highlight")
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.Name = "Highlight"
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.Parent = skibidiskibidiskibidiFANUMskibidiTaxCharacter
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.FillColor = Color3.fromRGB(255, 105, 180)
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.OutlineColor = Color3.fromRGB(255, 105, 180)
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.FillTransparency = 0.5
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.OutlineTransparency = 0.5
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight.Adornee = skibidiskibidiskibidiFANUMskibidiTaxCharacter
+        end
+    end
+end
+
+local function skibidiskibidiskibidiFANUMskibidiTaxRemoveHighlight(skibidiskibidiskibidiFANUMskibidiTaxPlayer)
+    if skibidiskibidiskibidiFANUMskibidiTaxPlayer and skibidiskibidiskibidiFANUMskibidiTaxPlayer.Character then
+        local skibidiskibidiskibidiFANUMskibidiTaxCharacter = skibidiskibidiskibidiFANUMskibidiTaxPlayer.Character
+        local skibidiskibidiskibidiFANUMskibidiTaxHighlight = skibidiskibidiskibidiFANUMskibidiTaxCharacter:FindFirstChild("Highlight")
+        if skibidiskibidiskibidiFANUMskibidiTaxHighlight then
+            skibidiskibidiskibidiFANUMskibidiTaxHighlight:Destroy()
+        end
+    end
+end
+
+local function skibidiskibidiskibidiFANUMskibidiTaxUpdateHighlights()
+    for _, skibidiskibidiskibidiFANUMskibidiTaxPlayer in ipairs(skibidiskibidiskibidiFANUMskibidiTaxABC:GetPlayers()) do
+        if skibidiskibidiskibidiFANUMskibidiTaxPlayer.Character then
+            skibidiskibidiskibidiFANUMskibidiTaxCreateHighlight(skibidiskibidiskibidiFANUMskibidiTaxPlayer)
+        end
+    end
+end
+
+skibidiskibidiskibidiFANUMskibidiTaxUpdateHighlights()
+skibidiskibidiskibidiFANUMskibidiTaxABC.PlayerAdded:Connect(function() skibidiskibidiskibidiFANUMskibidiTaxUpdateHighlights() end)
+skibidiskibidiskibidiFANUMskibidiTaxABC.PlayerRemoving:Connect(function(skibidiskibidiskibidiFANUMskibidiTaxPlayer) skibidiskibidiskibidiFANUMskibidiTaxRemoveHighlight(skibidiskibidiskibidiFANUMskibidiTaxPlayer) end)
+
+skibidiskibidiskibidiFANUMskibidiTaxDEF.InputBegan:Connect(function(skibidiskibidiskibidiFANUMskibidiTaxZAB)
+    if skibidiskibidiskibidiFANUMskibidiTaxZAB.UserInputType == Enum.UserInputType.MouseButton1 then
+        skibidiskibidiskibidiFANUMskibidiTaxUpdateHighlights()
+        skibidiskibidiskibidiFANUMskibidiTaxPQR = true
+        local skibidiskibidiskibidiFANUMskibidiTaxCDE = skibidiskibidiskibidiFANUMskibidiTaxSTU()
+        if skibidiskibidiskibidiFANUMskibidiTaxCDE then
+            skibidiskibidiskibidiFANUMskibidiTaxTUV(skibidiskibidiskibidiFANUMskibidiTaxCDE)
+        end
+    end
+end)
+
+skibidiskibidiskibidiFANUMskibidiTaxDEF.InputEnded:Connect(function(skibidiskibidiskibidiFANUMskibidiTaxFGH)
+    if skibidiskibidiskibidiFANUMskibidiTaxFGH.UserInputType == Enum.UserInputType.MouseButton1 then
+        skibidiskibidiskibidiFANUMskibidiTaxPQR = false
+    end
+end)
+
+game:GetService("RunService").Heartbeat:Connect(function()
+    if skibidiskibidiskibidiFANUMskibidiTaxPQR and skibidiskibidiskibidiFANUMskibidiTaxMNO then
+        skibidiskibidiskibidiFANUMskibidiTaxTUV(skibidiskibidiskibidiFANUMskibidiTaxMNO)
+    end
+end)
